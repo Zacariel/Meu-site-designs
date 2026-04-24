@@ -28,7 +28,7 @@ body::before {
     radial-gradient(circle at 80% 20%, rgba(255,160,190,0.2), transparent 40%);
   background-size: 120px 120px, 100% 100%, 100% 100%;
   animation: moveBg 30s linear infinite;
-  z-index: 0;
+  z-index: -1; /* 🔥 IMPORTANTE */
 }
 
 @keyframes moveBg {
@@ -45,7 +45,6 @@ header {
   padding: 25px;
   color: white;
   overflow: hidden;
-  z-index: 1;
 }
 
 /* PARTICULAS HEADER */
@@ -69,7 +68,7 @@ header::after {
   background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
 }
 
-/* animações */
+/* ANIMAÇÕES */
 @keyframes gradient {
   0% { background-position: 0% }
   50% { background-position: 100% }
@@ -99,8 +98,6 @@ header::after {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   overflow: hidden;
-  z-index: 1;
-  transition: 0.3s;
 }
 
 .box:hover {
@@ -120,12 +117,6 @@ header::after {
   animation: subir 20s linear infinite;
 }
 
-/* variação (mais natural) */
-.box:nth-of-type(1)::before { animation-duration: 18s; }
-.box:nth-of-type(2)::before { animation-duration: 22s; }
-.box:nth-of-type(3)::before { animation-duration: 26s; }
-
-/* brilho */
 .box::after {
   content: "";
   position: absolute;
@@ -133,13 +124,12 @@ header::after {
   background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
 }
 
-/* animação */
 @keyframes subir {
   from { transform: translateY(0); }
   to { transform: translateY(-200px); }
 }
 
-/* PORTFOLIO */
+/* PORTFÓLIO */
 .portfolio {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -156,7 +146,6 @@ header::after {
 
 .portfolio img:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 /* FAQ */
@@ -169,11 +158,6 @@ header::after {
   margin-top: 5px;
   border-radius: 5px;
   cursor: pointer;
-  transition: 0.2s;
-}
-
-.faq button:hover {
-  transform: scale(1.02);
 }
 
 .faq p {
@@ -181,24 +165,7 @@ header::after {
   padding: 10px;
 }
 
-/* MODAL IMAGEM */
-#modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-#modal img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
-
-/* WHATS */
+/* WHATSAPP (FIX REAL) */
 .whatsapp {
   position: fixed;
   bottom: 20px;
@@ -210,6 +177,7 @@ header::after {
   text-decoration: none;
   font-weight: bold;
   animation: pulse 2s infinite;
+  z-index: 9999; /* 🔥 GARANTE QUE FICA NA FRENTE */
 }
 
 @keyframes pulse {
@@ -245,50 +213,42 @@ header::after {
 </div>
 
 <section class="portfolio fade-in">
-  <img src="img/arte1.jpg" onclick="abrirModal(this.src)">
-  <img src="img/arte2.jpg" onclick="abrirModal(this.src)">
-  <img src="img/arte3.jpg" onclick="abrirModal(this.src)">
-  <img src="img/arte4.jpg" onclick="abrirModal(this.src)">
-  <img src="img/arte5.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte1.jpg">
+  <img src="img/arte2.jpg">
+  <img src="img/arte3.jpg">
+  <img src="img/arte4.jpg">
+  <img src="img/arte5.jpg">
 </section>
 
 <div class="box faq fade-in">
   <h2>❓ Perguntas Frequentes</h2>
 
   <button onclick="toggle(this)">Como faço o pedido?</button>
-  <p>Você entra em contato pelo WhatsApp</p>
+  <p>Você entra em contato pelo WhatsApp e envia as informações</p>
 
   <button onclick="toggle(this)">Posso pedir alterações?</button>
   <p>Sim! Ajusto até você ficar satisfeito</p>
 
-  <button onclick="toggle(this)">Prazo de entrega?</button>
+  <button onclick="toggle(this)">Você faz impressão?</button>
+  <p>Sim, consulte valores</p>
+
+  <button onclick="toggle(this)">As artes são personalizadas?</button>
+  <p>Sim, feitas sob medida</p>
+
+  <button onclick="toggle(this)">Qual o prazo?</button>
   <p>Até 2 dias úteis</p>
 
 </div>
 
 <a class="whatsapp" 
-href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊%0AQuero%20uma%20arte%20personalizada">
+href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊">
   WhatsApp
 </a>
-
-<!-- MODAL -->
-<div id="modal" onclick="fecharModal()">
-  <img id="imgGrande">
-</div>
 
 <script>
 function toggle(el){
   let p = el.nextElementSibling;
   p.style.display = p.style.display === "block" ? "none" : "block";
-}
-
-function abrirModal(src){
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("imgGrande").src = src;
-}
-
-function fecharModal(){
-  document.getElementById("modal").style.display = "none";
 }
 </script>
 
