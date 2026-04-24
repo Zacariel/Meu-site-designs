@@ -28,7 +28,7 @@ body::before {
     radial-gradient(circle at 80% 20%, rgba(255,160,190,0.2), transparent 40%);
   background-size: 120px 120px, 100% 100%, 100% 100%;
   animation: moveBg 30s linear infinite;
-  z-index: -1; /* 🔥 IMPORTANTE */
+  z-index: -1;
 }
 
 @keyframes moveBg {
@@ -47,7 +47,6 @@ header {
   overflow: hidden;
 }
 
-/* PARTICULAS HEADER */
 header::before {
   content: "";
   position: absolute;
@@ -58,17 +57,18 @@ header::before {
   background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
   background-size: 60px 60px;
   animation: subir 20s linear infinite;
+  pointer-events: none;
 }
 
-/* brilho */
 header::after {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
+  pointer-events: none;
 }
 
-/* ANIMAÇÕES */
+/* animações */
 @keyframes gradient {
   0% { background-position: 0% }
   50% { background-position: 100% }
@@ -98,13 +98,14 @@ header::after {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   overflow: hidden;
+  transition: 0.3s;
 }
 
 .box:hover {
   transform: translateY(-5px);
 }
 
-/* PARTICULAS */
+/* partículas */
 .box::before {
   content: "";
   position: absolute;
@@ -115,6 +116,7 @@ header::after {
   background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
   background-size: 60px 60px;
   animation: subir 20s linear infinite;
+  pointer-events: none;
 }
 
 .box::after {
@@ -122,11 +124,18 @@ header::after {
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
+  pointer-events: none;
 }
 
 @keyframes subir {
   from { transform: translateY(0); }
   to { transform: translateY(-200px); }
+}
+
+/* garante clique */
+header *, .box * {
+  position: relative;
+  z-index: 2;
 }
 
 /* PORTFÓLIO */
@@ -140,8 +149,8 @@ header::after {
 .portfolio img {
   width: 100%;
   border-radius: 10px;
-  transition: 0.3s;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .portfolio img:hover {
@@ -165,7 +174,24 @@ header::after {
   padding: 10px;
 }
 
-/* WHATSAPP (FIX REAL) */
+/* MODAL */
+#modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+}
+
+#modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+/* WHATSAPP */
 .whatsapp {
   position: fixed;
   bottom: 20px;
@@ -177,7 +203,7 @@ header::after {
   text-decoration: none;
   font-weight: bold;
   animation: pulse 2s infinite;
-  z-index: 9999; /* 🔥 GARANTE QUE FICA NA FRENTE */
+  z-index: 9999;
 }
 
 @keyframes pulse {
@@ -185,7 +211,6 @@ header::after {
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
-
 </style>
 </head>
 
@@ -193,7 +218,7 @@ header::after {
 
 <header class="fade-in">
   <h1>Artes Personalizadas 🎨</h1>
-  <p>Artes personalizadas rápidas e prontas para imprimir</p>
+  <p>Artes prontas para imprimir</p>
   <p><strong>✔ Arquivo digital</strong></p>
   <p><strong>⏳ Entrega em até 2 dias úteis</strong></p>
 </header>
@@ -209,15 +234,15 @@ header::after {
   <h2>📌 Como funciona</h2>
   <p>1. Chama no WhatsApp</p>
   <p>2. Envia nome + tema</p>
-  <p>3. Recebe sua arte pronta</p>
+  <p>3. Recebe a arte pronta</p>
 </div>
 
 <section class="portfolio fade-in">
-  <img src="img/arte1.jpg">
-  <img src="img/arte2.jpg">
-  <img src="img/arte3.jpg">
-  <img src="img/arte4.jpg">
-  <img src="img/arte5.jpg">
+  <img src="img/arte1.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte2.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte3.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte4.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte5.jpg" onclick="abrirModal(this.src)">
 </section>
 
 <div class="box faq fade-in">
@@ -237,7 +262,6 @@ header::after {
 
   <button onclick="toggle(this)">Qual o prazo?</button>
   <p>Até 2 dias úteis</p>
-
 </div>
 
 <a class="whatsapp" 
@@ -245,10 +269,24 @@ href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊">
   WhatsApp
 </a>
 
+<!-- MODAL -->
+<div id="modal" onclick="fecharModal()">
+  <img id="imgGrande">
+</div>
+
 <script>
 function toggle(el){
   let p = el.nextElementSibling;
   p.style.display = p.style.display === "block" ? "none" : "block";
+}
+
+function abrirModal(src){
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("imgGrande").src = src;
+}
+
+function fecharModal(){
+  document.getElementById("modal").style.display = "none";
 }
 </script>
 
