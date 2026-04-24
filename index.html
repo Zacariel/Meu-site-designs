@@ -50,6 +50,69 @@ header {
   border-radius: 10px;
 }
 
+  /* FUNDO DECORATIVO ANIMADO */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,182,193,0.15) 10%, transparent 10%);
+  background-size: 120px 120px;
+  animation: moveBg 25s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(100px, 100px); }
+}
+
+/* BOLHAS NOS CANTOS */
+body::after {
+  content: "";
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  bottom: -50px;
+  right: -50px;
+  background: radial-gradient(circle, rgba(255,182,193,0.4), transparent);
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+}
+
+/* MAIS UMA BOLHA (CANTO OPOSTO) */
+header::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: -50px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+  border-radius: 50%;
+  filter: blur(50px);
+}
+
+/* EFEITO DE PROFUNDIDADE NAS CAIXAS */
+.box {
+  backdrop-filter: blur(5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+/* LEVE MOVIMENTO AO PASSAR O MOUSE */
+.box:hover {
+  transform: translateY(-5px);
+}
+
+/* EFEITO NAS IMAGENS MAIS SUAVE */
+.portfolio img {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
 /* PORTFÓLIO */
 .portfolio {
   display: grid;
@@ -89,7 +152,7 @@ header {
 /* BOTÃO WHATSAPP */
 .whatsapp {
   position: fixed;
-  bottom: 20px;
+  bottom: 20px; 
   right: 20px;
   background: #25D366;
   color: white;
@@ -159,7 +222,7 @@ header {
 </div>
 
 <a class="whatsapp" 
-href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊%0A%0AQuero%20uma%20arte%20personalizada%0A%0ATipo%20de%20arte:%0ATema:%0ANome:%0DPrazo:">
+href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊%0A%0AQuero%20uma%20arte%20personalizada%0A%0ATipo%20de%20arte:%0ATema:%0ANome:">
   WhatsApp
 </a>
 
