@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artes Personalizadas</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f7f7f7;
+  text-align: center;
+}
+
+/* ANIMAÇÃO DE ENTRADA */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 1s forwards;
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(45deg, #ffb6c1, #ff8fab);
+  padding: 20px;
+  color: white;
+}
+
+/* PREÇOS */
+.preco {
+  background: white;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  animation-delay: 0.2s;
+}
+
+/* PORTFÓLIO */
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.portfolio img {
+  width: 100%;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+/* HOVER NAS IMAGENS */
+.portfolio img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* BOTÃO WHATSAPP */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+/* ANIMAÇÃO PULSO */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="fade-in">
+  <h1>Artes Personalizadas 🎨</h1>
+  <p>Chá de bebê, aniversários e muito mais</p>
+</header>
+
+<div class="preco fade-in">
+  <h2>Pacotes</h2>
+  <p>5 artes: R$35</p>
+  <p>10 artes: R$70</p>
+  <p>Arte individual: a partir de R$12</p>
+</div>
+
+<section class="portfolio fade-in">
+  <img src="arte1.jpg">
+  <img src="arte2.jpg">
+  <img src="arte3.jpg">
+  <img src="arte4.jpg">
+</section>
+
+<a class="whatsapp" 
+href="https://wa.me/5548988510691?text=Oi%20quero%20uma%20arte%20personalizada">
+  WhatsApp
+</a>
+
+</body>
+</html>
