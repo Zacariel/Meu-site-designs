@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/*  FUNDO top*/
+/* FUNDO */
 body::before {
   content: "";
   position: fixed;
@@ -35,6 +35,7 @@ body::before {
   from { transform: translate(0,0); }
   to { transform: translate(100px, 100px); }
 }
+
 /* HEADER */
 header {
   position: relative;
@@ -47,7 +48,7 @@ header {
   z-index: 1;
 }
 
-/* 🔥 PARTÍCULAS NO HEADER (IGUAL AO FAQ) */
+/* PARTICULAS HEADER */
 header::before {
   content: "";
   position: absolute;
@@ -58,19 +59,17 @@ header::before {
   background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
   background-size: 60px 60px;
   animation: subir 20s linear infinite;
-  pointer-events: none;
 }
 
-/* leve brilho */
+/* brilho */
 header::after {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
-  pointer-events: none;
 }
 
-/* ANIMAÇÕES */
+/* animações */
 @keyframes gradient {
   0% { background-position: 0% }
   50% { background-position: 100% }
@@ -90,7 +89,7 @@ header::after {
   }
 }
 
-/* CAIXAS */
+/* BOX */
 .box {
   position: relative;
   background: rgba(255,255,255,0.4);
@@ -108,7 +107,7 @@ header::after {
   transform: translateY(-5px);
 }
 
-/* 🔥 PARTÍCULAS (EFEITO FAQ) */
+/* PARTICULAS */
 .box::before {
   content: "";
   position: absolute;
@@ -119,16 +118,19 @@ header::after {
   background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
   background-size: 60px 60px;
   animation: subir 20s linear infinite;
-  pointer-events: none;
 }
 
-/* brilho leve */
+/* variação (mais natural) */
+.box:nth-of-type(1)::before { animation-duration: 18s; }
+.box:nth-of-type(2)::before { animation-duration: 22s; }
+.box:nth-of-type(3)::before { animation-duration: 26s; }
+
+/* brilho */
 .box::after {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
-  pointer-events: none;
 }
 
 /* animação */
@@ -137,20 +139,19 @@ header::after {
   to { transform: translateY(-200px); }
 }
 
-/* PORTFÓLIO */
+/* PORTFOLIO */
 .portfolio {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
   padding: 20px;
-  position: relative;
-  z-index: 1;
 }
 
 .portfolio img {
   width: 100%;
   border-radius: 10px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .portfolio img:hover {
@@ -168,11 +169,33 @@ header::after {
   margin-top: 5px;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.faq button:hover {
+  transform: scale(1.02);
 }
 
 .faq p {
   display: none;
   padding: 10px;
+}
+
+/* MODAL IMAGEM */
+#modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
 }
 
 /* WHATS */
@@ -187,7 +210,6 @@ header::after {
   text-decoration: none;
   font-weight: bold;
   animation: pulse 2s infinite;
-  z-index: 2;
 }
 
 @keyframes pulse {
@@ -203,31 +225,31 @@ header::after {
 
 <header class="fade-in">
   <h1>Artes Personalizadas 🎨</h1>
-  <p>Para chá de bebê, aniversários e lembrancinhas</p>
-  <p><strong>✔ Arquivo digital pronto para imprimir</strong></p>
+  <p>Artes personalizadas rápidas e prontas para imprimir</p>
+  <p><strong>✔ Arquivo digital</strong></p>
   <p><strong>⏳ Entrega em até 2 dias úteis</strong></p>
 </header>
 
 <div class="box fade-in">
-  <h2>💰 Preços (promoção inicial)</h2>
-  <p>3 artes: R$30</p>
-  <p>5 artes: R$45</p>
-  <p>Arte individual: a partir de R$12</p>
+  <h2>💰 Preços</h2>
+  <p>1 arte: R$15</p>
+  <p>3 artes: R$39</p>
+  <p>5 artes: R$59</p>
 </div>
 
 <div class="box fade-in">
   <h2>📌 Como funciona</h2>
-  <p>1. Você chama no WhatsApp</p>
+  <p>1. Chama no WhatsApp</p>
   <p>2. Envia nome + tema</p>
-  <p>3. Eu crio e envio para você</p>
+  <p>3. Recebe sua arte pronta</p>
 </div>
 
 <section class="portfolio fade-in">
-  <img src="img/arte1.jpg">
-  <img src="img/arte2.jpg">
-  <img src="img/arte3.jpg">
-  <img src="img/arte4.jpg">
-  <img src="img/arte5.jpg">
+  <img src="img/arte1.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte2.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte3.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte4.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte5.jpg" onclick="abrirModal(this.src)">
 </section>
 
 <div class="box faq fade-in">
@@ -239,22 +261,34 @@ header::after {
   <button onclick="toggle(this)">Posso pedir alterações?</button>
   <p>Sim! Ajusto até você ficar satisfeito</p>
 
-  <button onclick="toggle(this)">Você faz impressão?</button>
-  <p>Sim, consulte valores</p>
+  <button onclick="toggle(this)">Prazo de entrega?</button>
+  <p>Até 2 dias úteis</p>
 
-  <button onclick="toggle(this)">As artes são personalizadas?</button>
-  <p>Sim, feitas sob medida</p>
 </div>
 
 <a class="whatsapp" 
-href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊%0A%0AQuero%20uma%20arte%20personalizada%0A%0ATipo:%0ATema:%0ANome:">
+href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊%0AQuero%20uma%20arte%20personalizada">
   WhatsApp
 </a>
+
+<!-- MODAL -->
+<div id="modal" onclick="fecharModal()">
+  <img id="imgGrande">
+</div>
 
 <script>
 function toggle(el){
   let p = el.nextElementSibling;
   p.style.display = p.style.display === "block" ? "none" : "block";
+}
+
+function abrirModal(src){
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("imgGrande").src = src;
+}
+
+function fecharModal(){
+  document.getElementById("modal").style.display = "none";
 }
 </script>
 
