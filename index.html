@@ -9,77 +9,55 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #f7f7f7;
+  background: #ffe4ec;
   text-align: center;
-  position: relative;
-  z-index: 0;
   overflow-x: hidden;
 }
 
-/* FUNDO ANIMADO */
+/* FUNDO GERAL */
 body::before {
   content: "";
   position: fixed;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: radial-gradient(circle, rgba(255,182,193,0.25) 10%, transparent 10%);
-  background-size: 120px 120px;
-  animation: moveBg 30s linear infinite;
-  z-index: 0;
-}
-
-@keyframes moveBg {
-  from { transform: translate(0,0); }
-  to { transform: translate(100px, 100px); }
-}
-
-/* MANCHAS GRANDES NOS CANTOS */
-body::after {
-  content: "";
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  bottom: -100px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(255,182,193,0.5), transparent);
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: 0;
-}
-
-/* OUTRO CANTO */
-.corner-top {
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  top: -80px;
-  left: -80px;
-  background: radial-gradient(circle, rgba(255,150,180,0.4), transparent);
-  border-radius: 50%;
-  filter: blur(70px);
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at top left, #ffb6c1 0%, transparent 40%),
+    radial-gradient(circle at bottom right, #ff8fab 0%, transparent 40%);
   z-index: 0;
 }
 
 /* HEADER */
 header {
   position: relative;
-  background: linear-gradient(-45deg, #ffb6c1, #ff8fab, #ffc2d1, #ff99ac);
+  background: linear-gradient(-45deg, #ffb6c1cc, #ff8fabcc, #ffc2d1cc, #ff99accc);
   background-size: 400% 400%;
   animation: gradient 6s ease infinite;
   padding: 25px;
   color: white;
+  overflow: hidden;
   z-index: 1;
 }
 
+/* brilho interno */
+header::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+/* ANIMAÇÕES */
 @keyframes gradient {
   0% { background-position: 0% }
   50% { background-position: 100% }
   100% { background-position: 0% }
 }
 
-/* ANIMAÇÃO DE ENTRADA */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -95,19 +73,39 @@ header {
 
 /* CAIXAS */
 .box {
-  background: rgba(255,255,255,0.85);
+  position: relative;
+  background: rgba(255,255,255,0.65);
   margin: 20px;
   padding: 15px;
   border-radius: 12px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transition: 0.3s;
-  position: relative;
+  overflow: hidden;
   z-index: 1;
+  transition: 0.3s;
 }
 
 .box:hover {
   transform: translateY(-5px);
+}
+
+/* PARTICULAS SUBINDO */
+.box::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  bottom: -100%;
+  left: -50%;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.25) 2px, transparent 2px);
+  background-size: 60px 60px;
+  animation: subir 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes subir {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
 }
 
 /* PORTFÓLIO */
@@ -173,8 +171,6 @@ header {
 </head>
 
 <body>
-
-<div class="corner-top"></div>
 
 <header class="fade-in">
   <h1>Artes Personalizadas 🎨</h1>
