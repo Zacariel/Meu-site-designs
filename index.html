@@ -27,20 +27,27 @@ body {
   }
 }
 
-/* HEADER */
+/* HEADER COM ANIMAÇÃO */
 header {
-  background: linear-gradient(45deg, #ffb6c1, #ff8fab);
+  background: linear-gradient(-45deg, #ffb6c1, #ff8fab, #ffc2d1, #ff99ac);
+  background-size: 400% 400%;
+  animation: gradient 6s ease infinite;
   padding: 20px;
   color: white;
 }
 
-/* PREÇOS */
-.preco {
+@keyframes gradient {
+  0% { background-position: 0% }
+  50% { background-position: 100% }
+  100% { background-position: 0% }
+}
+
+/* CAIXAS */
+.box {
   background: white;
   margin: 20px;
   padding: 15px;
   border-radius: 10px;
-  animation-delay: 0.2s;
 }
 
 /* PORTFÓLIO */
@@ -57,10 +64,26 @@ header {
   transition: 0.3s;
 }
 
-/* HOVER NAS IMAGENS */
 .portfolio img:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* FAQ */
+.faq button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #ffb6c1;
+  color: white;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.faq p {
+  display: none;
+  padding: 10px;
 }
 
 /* BOTÃO WHATSAPP */
@@ -77,7 +100,6 @@ header {
   animation: pulse 2s infinite;
 }
 
-/* ANIMAÇÃO PULSO */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.08); }
@@ -91,14 +113,24 @@ header {
 
 <header class="fade-in">
   <h1>Artes Personalizadas 🎨</h1>
-  <p>Chá de bebê, aniversários e muito mais</p>
+  <p>Para chá de bebê, aniversários e lembrancinhas</p>
+  <p><strong>✔ Arquivo digital pronto para imprimir</strong></p>
+  <p><strong>⏳ Entrega em até 2 dias úteis</strong></p>
 </header>
 
-<div class="preco fade-in">
-  <h2>Pacotes</h2>
-  <p>5 artes: R$25</p>
-  <p>10 artes: R$50</p>
-  <p>Arte individual: a partir de R$10</p>
+<div class="box fade-in">
+  <h2>💰 Preços (promoção inicial)</h2>
+  <p>3 artes: R$30</p>
+  <p>5 artes: R$45</p>
+  <p>Arte individual: a partir de R$12</p>
+  <p><small>*Valores promocionais para primeiros clientes</small></p>
+</div>
+
+<div class="box fade-in">
+  <h2>📌 Como funciona</h2>
+  <p>1. Você chama no WhatsApp</p>
+  <p>2. Envia nome + tema</p>
+  <p>3. Eu crio e envio para você</p>
 </div>
 
 <section class="portfolio fade-in">
@@ -109,10 +141,34 @@ header {
   <img src="img/arte5.jpg">
 </section>
 
+<div class="box faq fade-in">
+  <h2>❓ Perguntas Frequentes</h2>
+
+  <button onclick="toggle(this)">Como faço o pedido?</button>
+  <p>Você entra em contato pelo WhatsApp e envia as informações</p>
+
+  <button onclick="toggle(this)">Posso pedir alterações?</button>
+  <p>Sim! Ajusto até você ficar satisfeito</p>
+
+  <button onclick="toggle(this)">Você faz impressão?</button>
+  <p>Sim, consulte valores no WhatsApp</p>
+
+  <button onclick="toggle(this)">As artes são personalizadas?</button>
+  <p>Sim, feitas com base no seu pedido</p>
+
+</div>
+
 <a class="whatsapp" 
-href="https://wa.me/5548988510691?text=Olá%20quero%20uma%20arte%20personalizada">
+href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊%0A%0AQuero%20uma%20arte%20personalizada%0A%0ATipo%20de%20arte:%0ATema:%0ANome:%0DPrazo:">
   WhatsApp
 </a>
+
+<script>
+function toggle(el){
+  let p = el.nextElementSibling;
+  p.style.display = p.style.display === "block" ? "none" : "block";
+}
+</script>
 
 </body>
 </html>
