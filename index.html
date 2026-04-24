@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/* FUNDO BONITO */
+/*  FUNDO top*/
 body::before {
   content: "";
   position: fixed;
@@ -35,7 +35,6 @@ body::before {
   from { transform: translate(0,0); }
   to { transform: translate(100px, 100px); }
 }
-
 /* HEADER */
 header {
   position: relative;
@@ -48,13 +47,36 @@ header {
   z-index: 1;
 }
 
+/* 🔥 PARTÍCULAS NO HEADER (IGUAL AO FAQ) */
+header::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  bottom: -100%;
+  left: -50%;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
+  background-size: 60px 60px;
+  animation: subir 20s linear infinite;
+  pointer-events: none;
+}
+
+/* leve brilho */
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
+  pointer-events: none;
+}
+
+/* ANIMAÇÕES */
 @keyframes gradient {
   0% { background-position: 0% }
   50% { background-position: 100% }
   100% { background-position: 0% }
 }
 
-/* ANIMAÇÃO ENTRADA */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -71,7 +93,7 @@ header {
 /* CAIXAS */
 .box {
   position: relative;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.4);
   margin: 20px;
   padding: 15px;
   border-radius: 12px;
@@ -86,7 +108,7 @@ header {
   transform: translateY(-5px);
 }
 
-/* 🔥 TEU EFEITO ORIGINAL (AJUSTADO PRA FUNCIONAR EM TODOS) */
+/* 🔥 PARTÍCULAS (EFEITO FAQ) */
 .box::before {
   content: "";
   position: absolute;
@@ -94,20 +116,22 @@ header {
   height: 200%;
   bottom: -100%;
   left: -50%;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.25) 2px, transparent 2px);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
   background-size: 60px 60px;
   animation: subir 20s linear infinite;
   pointer-events: none;
-  z-index: 0;
 }
 
-/* 🔥 ISSO AQUI RESOLVE TUDO */
-.box * {
-  position: relative;
-  z-index: 1;
+/* brilho leve */
+.box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
+  pointer-events: none;
 }
 
-/* ANIMAÇÃO */
+/* animação */
 @keyframes subir {
   from { transform: translateY(0); }
   to { transform: translateY(-200px); }
@@ -151,7 +175,7 @@ header {
   padding: 10px;
 }
 
-/* BOTÃO WHATSAPP */
+/* WHATS */
 .whatsapp {
   position: fixed;
   bottom: 20px;
@@ -189,7 +213,6 @@ header {
   <p>3 artes: R$30</p>
   <p>5 artes: R$45</p>
   <p>Arte individual: a partir de R$12</p>
-  <p><small>*Valores promocionais para primeiros clientes</small></p>
 </div>
 
 <div class="box fade-in">
@@ -211,20 +234,20 @@ header {
   <h2>❓ Perguntas Frequentes</h2>
 
   <button onclick="toggle(this)">Como faço o pedido?</button>
-  <p>Você entra em contato pelo WhatsApp e envia as informações</p>
+  <p>Você entra em contato pelo WhatsApp</p>
 
   <button onclick="toggle(this)">Posso pedir alterações?</button>
   <p>Sim! Ajusto até você ficar satisfeito</p>
 
   <button onclick="toggle(this)">Você faz impressão?</button>
-  <p>Sim, consulte valores no WhatsApp</p>
+  <p>Sim, consulte valores</p>
 
   <button onclick="toggle(this)">As artes são personalizadas?</button>
-  <p>Sim, feitas com base no seu pedido</p>
+  <p>Sim, feitas sob medida</p>
 </div>
 
 <a class="whatsapp" 
-href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊%0A%0AQuero%20uma%20arte%20personalizada%0A%0ATipo%20de%20arte:%0ATema:%0ANome:">
+href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊%0A%0AQuero%20uma%20arte%20personalizada%0A%0ATipo:%0ATema:%0ANome:">
   WhatsApp
 </a>
 
