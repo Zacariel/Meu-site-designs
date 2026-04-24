@@ -11,6 +11,72 @@ body {
   font-family: Arial;
   background: #f7f7f7;
   text-align: center;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+/* FUNDO ANIMADO */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,182,193,0.25) 10%, transparent 10%);
+  background-size: 120px 120px;
+  animation: moveBg 30s linear infinite;
+  z-index: 0;
+}
+
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(100px, 100px); }
+}
+
+/* MANCHAS GRANDES NOS CANTOS */
+body::after {
+  content: "";
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(255,182,193,0.5), transparent);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+/* OUTRO CANTO */
+.corner-top {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  top: -80px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(255,150,180,0.4), transparent);
+  border-radius: 50%;
+  filter: blur(70px);
+  z-index: 0;
+}
+
+/* HEADER */
+header {
+  position: relative;
+  background: linear-gradient(-45deg, #ffb6c1, #ff8fab, #ffc2d1, #ff99ac);
+  background-size: 400% 400%;
+  animation: gradient 6s ease infinite;
+  padding: 25px;
+  color: white;
+  z-index: 1;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% }
+  50% { background-position: 100% }
+  100% { background-position: 0% }
 }
 
 /* ANIMAÇÃO DE ENTRADA */
@@ -27,90 +93,21 @@ body {
   }
 }
 
-/* HEADER COM ANIMAÇÃO */
-header {
-  background: linear-gradient(-45deg, #ffb6c1, #ff8fab, #ffc2d1, #ff99ac);
-  background-size: 400% 400%;
-  animation: gradient 6s ease infinite;
-  padding: 20px;
-  color: white;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% }
-  50% { background-position: 100% }
-  100% { background-position: 0% }
-}
-
 /* CAIXAS */
 .box {
-  background: white;
+  background: rgba(255,255,255,0.85);
   margin: 20px;
   padding: 15px;
-  border-radius: 10px;
-}
-
-  /* FUNDO DECORATIVO ANIMADO */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: radial-gradient(circle, rgba(255,182,193,0.15) 10%, transparent 10%);
-  background-size: 120px 120px;
-  animation: moveBg 25s linear infinite;
-  z-index: -1;
-}
-
-@keyframes moveBg {
-  from { transform: translate(0,0); }
-  to { transform: translate(100px, 100px); }
-}
-
-/* BOLHAS NOS CANTOS */
-body::after {
-  content: "";
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  bottom: -50px;
-  right: -50px;
-  background: radial-gradient(circle, rgba(255,182,193,0.4), transparent);
-  border-radius: 50%;
-  filter: blur(60px);
-  z-index: -1;
-}
-
-/* MAIS UMA BOLHA (CANTO OPOSTO) */
-header::after {
-  content: "";
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  top: -50px;
-  left: -50px;
-  background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
-  border-radius: 50%;
-  filter: blur(50px);
-}
-
-/* EFEITO DE PROFUNDIDADE NAS CAIXAS */
-.box {
+  border-radius: 12px;
   backdrop-filter: blur(5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   transition: 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
-/* LEVE MOVIMENTO AO PASSAR O MOUSE */
 .box:hover {
   transform: translateY(-5px);
-}
-
-/* EFEITO NAS IMAGENS MAIS SUAVE */
-.portfolio img {
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 /* PORTFÓLIO */
@@ -119,6 +116,8 @@ header::after {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .portfolio img {
@@ -137,7 +136,7 @@ header::after {
   width: 100%;
   padding: 10px;
   border: none;
-  background: #ffb6c1;
+  background: #ff8fab;
   color: white;
   margin-top: 5px;
   border-radius: 5px;
@@ -152,7 +151,7 @@ header::after {
 /* BOTÃO WHATSAPP */
 .whatsapp {
   position: fixed;
-  bottom: 20px; 
+  bottom: 20px;
   right: 20px;
   background: #25D366;
   color: white;
@@ -161,6 +160,7 @@ header::after {
   text-decoration: none;
   font-weight: bold;
   animation: pulse 2s infinite;
+  z-index: 2;
 }
 
 @keyframes pulse {
@@ -173,6 +173,8 @@ header::after {
 </head>
 
 <body>
+
+<div class="corner-top"></div>
 
 <header class="fade-in">
   <h1>Artes Personalizadas 🎨</h1>
@@ -218,7 +220,6 @@ header::after {
 
   <button onclick="toggle(this)">As artes são personalizadas?</button>
   <p>Sim, feitas com base no seu pedido</p>
-
 </div>
 
 <a class="whatsapp" 
