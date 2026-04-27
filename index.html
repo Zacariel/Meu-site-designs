@@ -15,7 +15,7 @@ body {
   color: #4a3728;
 }
 
-/* --- SEUS EFEITOS DE FUNDO --- */
+/* FUNDO ANIMADO ORIGINAL */
 body::before {
   content: "";
   position: fixed;
@@ -37,13 +37,13 @@ body::before {
   to { transform: translate(100px, 100px); }
 }
 
-/* --- HEADER COM GRADIENTE --- */
+/* HEADER COM GRADIENTE E SUBIDA DE PARTÍCULAS */
 header {
   position: relative;
   background: linear-gradient(-45deg, #ffb6c1cc, #ff8fabcc, #ffc2d1cc, #ff99accc);
   background-size: 400% 400%;
   animation: gradient 6s ease infinite;
-  padding: 30px;
+  padding: 25px;
   color: white;
   overflow: hidden;
 }
@@ -76,19 +76,23 @@ header::before {
   max-width: 150px;
   border-radius: 50%;
   margin-bottom: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* --- BOXES --- */
+/* BOX COM EFEITO DE PARTÍCULAS */
 .box {
   position: relative;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.4);
   margin: 20px;
-  padding: 20px;
-  border-radius: 15px;
+  padding: 15px;
+  border-radius: 12px;
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   overflow: hidden;
+  transition: 0.3s;
 }
+
+.box:hover { transform: translateY(-5px); }
 
 .box::before {
   content: "";
@@ -97,27 +101,52 @@ header::before {
   height: 200%;
   bottom: -100%;
   left: -50%;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.4) 2px, transparent 2px);
-  background-size: 50px 50px;
-  animation: subir 15s linear infinite;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
+  background-size: 60px 60px;
+  animation: subir 20s linear infinite;
   pointer-events: none;
 }
 
 header *, .box * { position: relative; z-index: 2; }
 
-/* --- COMBOS --- */
+/* COMBOS ENFEITADOS */
+.combo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 .combo-card {
   background: white;
   border: 2px solid #ff8fab;
   border-radius: 10px;
-  margin: 10px 0;
   padding: 15px;
+  transition: 0.2s;
 }
 
-.combo-card h3 { margin: 0; color: #ff8fab; }
-.price { font-size: 1.4em; font-weight: bold; }
+.combo-card:nth-child(2) {
+  border: 3px solid #ff4d79;
+  transform: scale(1.02);
+}
 
-/* --- PORTFÓLIO (CORRIGIDO) --- */
+.combo-card h3 { margin: 0; color: #ff8fab; font-size: 1.1em; }
+.price { font-size: 1.5em; font-weight: bold; color: #4a3728; margin: 5px 0; }
+
+/* TABELA DE ESTILOS */
+.estilos-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.estilos-table th { background: #ffb6c1; color: white; padding: 10px; }
+.estilos-table td { padding: 10px; border-bottom: 1px solid #eee; font-size: 0.9em; }
+
+/* PORTFÓLIO */
 .portfolio {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -127,17 +156,17 @@ header *, .box * { position: relative; z-index: 2; }
 
 .portfolio img {
   width: 100%;
-  height: 200px; /* Altura fixa pra não ficarem gigantes */
-  object-fit: cover; /* Faz a imagem preencher o quadrado sem distorcer */
+  height: 180px;
+  object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
-  border: 4px solid white;
+  border: 3px solid white;
 }
 
 .portfolio img:hover { transform: scale(1.05); }
 
-/* --- WHATSAPP --- */
+/* WHATSAPP */
 .whatsapp {
   position: fixed;
   bottom: 20px;
@@ -168,9 +197,12 @@ header *, .box * { position: relative; z-index: 2; }
   margin-top: 5px;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
-.faq p { display: none; padding: 10px; background: white; border-radius: 5px; }
 
+.faq p { display: none; padding: 10px; background: white; border-radius: 5px; text-align: left; font-size: 0.9em; }
+
+/* MODAL */
 #modal {
   display: none;
   position: fixed;
@@ -180,36 +212,67 @@ header *, .box * { position: relative; z-index: 2; }
   align-items: center;
   z-index: 10000;
 }
+
 #modal img { max-width: 90%; max-height: 90%; border-radius: 10px; }
 </style>
 </head>
 
 <body>
 
-<header>
-  <img src="img/bicho-preguiça-logo.jpg" alt="Logo" class="logo-img">
-  <h1>Bicho-Preguiça Designs 🦥</h1>
+<header class="fade-in">
+  <img src="img/bicho-preguiça-logo.jpg" alt="Bicho-Preguiça Logo" class="logo-img">
+  <h1>Bicho-Preguiça Designs 🎨</h1>
   <p>Artes prontas para imprimir</p>
   <p><strong>✔ Arquivo digital | ⏳ Entrega em até 2 dias úteis</strong></p>
 </header>
 
-<div class="box">
-  <h2>💰 Nossos Preços</h2>
-  <div class="combo-card">
-    <p>1 arte: <strong>R$ 15</strong></p>
-    <p>3 artes: <strong>R$ 39</strong></p>
-    <p>5 artes: <strong>R$ 59</strong></p>
+<div class="box fade-in">
+  <h2>💰 Nossos Combos</h2>
+  <div class="combo-container">
+    <div class="combo-card">
+      <h3>Arte Avulsa</h3>
+      <p>1 arte personalizada</p>
+      <div class="price">R$ 15</div>
+    </div>
+    <div class="combo-card">
+      <div style="background:#ff4d79; color:white; font-size:0.7em; padding:2px 8px; border-radius:5px; display:inline-block; margin-bottom:5px;">MAIS PEDIDO</div>
+      <h3>Trio de Festa</h3>
+      <p>3 artes do mesmo tema</p>
+      <div class="price">R$ 39</div>
+    </div>
+    <div class="combo-card">
+      <h3>Kit Completo</h3>
+      <p>5 artes do mesmo tema</p>
+      <div class="price">R$ 59</div>
+    </div>
   </div>
 </div>
 
-<div class="box">
+<div class="box fade-in">
   <h2>📌 Como funciona</h2>
   <p>1. Chama no WhatsApp</p>
   <p>2. Envia nome + tema</p>
   <p>3. Recebe a arte pronta</p>
 </div>
 
-<section class="portfolio">
+<div class="box fade-in">
+  <h2>🎨 Estilos de Design</h2>
+  <table class="estilos-table">
+    <thead>
+      <tr>
+        <th>Estilo</th>
+        <th>Sugestão</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><b>Minimalista</b></td><td>Batizados e Chás</td></tr>
+      <tr><td><b>Aquarela</b></td><td>Festas Infantis</td></tr>
+      <tr><td><b>Vibrante</b></td><td>Jogos e Heróis</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="portfolio fade-in">
   <img src="img/arte1.jpg" onclick="abrirModal(this.src)">
   <img src="img/arte2.jpg" onclick="abrirModal(this.src)">
   <img src="img/arte3.jpg" onclick="abrirModal(this.src)">
@@ -217,23 +280,26 @@ header *, .box * { position: relative; z-index: 2; }
   <img src="img/arte5.jpg" onclick="abrirModal(this.src)">
 </section>
 
-<div class="box faq">
+<div class="box faq fade-in">
   <h2>❓ Perguntas Frequentes</h2>
 
   <button onclick="toggle(this)">Como faço o pedido?</button>
-  <p>Você entra em contato pelo WhatsApp e envia as informações.</p>
+  <p>Você entra em contato pelo WhatsApp, escolhe seu combo e envia o tema e o nome para a personalização.</p>
 
   <button onclick="toggle(this)">Posso pedir alterações?</button>
-  <p>Sim! Ajusto até você ficar satisfeito.</p>
+  <p>Sim! Ajustamos detalhes como cores e fontes até você ficar 100% satisfeito com o resultado.</p>
 
   <button onclick="toggle(this)">Você faz impressão?</button>
-  <p>Sim, consulte valores e disponibilidade para sua região.</p>
+  <p>Trabalhamos focados no design digital para rapidez, mas consulte valores de impressão para sua região.</p>
 
   <button onclick="toggle(this)">As artes são personalizadas?</button>
-  <p>Sim, são feitas sob medida para o seu evento.</p>
+  <p>Sim! Nada de modelos genéricos, montamos a arte seguindo o seu gosto e o tema da festa.</p>
 
   <button onclick="toggle(this)">Qual o prazo?</button>
-  <p>Até 2 dias úteis após o envio das informações.</p>
+  <p>O prazo padrão é de até 2 dias úteis, mas geralmente entregamos antes!</p>
+
+  <button onclick="toggle(this)">Quais arquivos eu recebo?</button>
+  <p>Você recebe arquivos em PDF (prontos para imprimir com máxima qualidade) e imagens em PNG (para enviar nas redes sociais).</p>
 </div>
 
 <a class="whatsapp" href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊">
@@ -249,10 +315,12 @@ function toggle(el){
   let p = el.nextElementSibling;
   p.style.display = p.style.display === "block" ? "none" : "block";
 }
+
 function abrirModal(src){
   document.getElementById("modal").style.display = "flex";
   document.getElementById("imgGrande").src = src;
 }
+
 function fecharModal(){
   document.getElementById("modal").style.display = "none";
 }
