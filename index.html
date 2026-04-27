@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Artes Personalizadas</title>
+<title>Bicho-Preguiça Designs | Arte Digital</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #ffe4ec;
   text-align: center;
   overflow-x: hidden;
+  color: #4a3728; /* Cor marrom baseada na logo */
 }
 
-/* FUNDO */
+/* FUNDO ANIMADO */
 body::before {
   content: "";
   position: fixed;
@@ -39,36 +40,21 @@ body::before {
 /* HEADER */
 header {
   position: relative;
-  background: linear-gradient(-45deg, #ffb6c1cc, #ff8fabcc, #ffc2d1cc, #ff99accc);
+  background: linear-gradient(-45deg, #ffb6c1cc, #ff8fabcc, #e2bc9ccc, #ff99accc);
   background-size: 400% 400%;
   animation: gradient 6s ease infinite;
-  padding: 25px;
+  padding: 40px 25px;
   color: white;
   overflow: hidden;
 }
 
-header::before {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  bottom: -100%;
-  left: -50%;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
-  background-size: 60px 60px;
-  animation: subir 20s linear infinite;
-  pointer-events: none;
+.logo-site {
+  max-width: 180px;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  margin-bottom: 15px;
 }
 
-header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
-  pointer-events: none;
-}
-
-/* animações */
 @keyframes gradient {
   0% { background-position: 0% }
   50% { background-position: 100% }
@@ -82,114 +68,96 @@ header::after {
 }
 
 @keyframes aparecer {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* BOX */
 .box {
   position: relative;
-  background: rgba(255,255,255,0.4);
-  margin: 20px;
-  padding: 15px;
-  border-radius: 12px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  overflow: hidden;
+  background: rgba(255,255,255,0.7);
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 600px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
   transition: 0.3s;
 }
 
-.box:hover {
-  transform: translateY(-5px);
+.box:hover { transform: translateY(-5px); }
+
+/* TABELA DE ESTILOS */
+.estilos-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-/* partículas */
-.box::before {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  bottom: -100%;
-  left: -50%;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
-  background-size: 60px 60px;
-  animation: subir 20s linear infinite;
-  pointer-events: none;
+.estilos-table th {
+  background-color: #ffb6c1;
+  color: white;
+  padding: 12px;
+  font-size: 14px;
 }
 
-.box::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.2), transparent 70%);
-  pointer-events: none;
-}
-
-@keyframes subir {
-  from { transform: translateY(0); }
-  to { transform: translateY(-200px); }
-}
-
-/* garante clique */
-header *, .box * {
-  position: relative;
-  z-index: 2;
+.estilos-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  text-align: left;
 }
 
 /* PORTFÓLIO */
 .portfolio {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 15px;
   padding: 20px;
+  max-width: 800px;
+  margin: auto;
 }
 
 .portfolio img {
   width: 100%;
-  border-radius: 10px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 15px;
   cursor: pointer;
   transition: 0.3s;
+  border: 3px solid white;
 }
 
-.portfolio img:hover {
-  transform: scale(1.05);
+.portfolio img:hover { transform: scale(1.05); }
+
+/* GUIA DE IMPRESSÃO */
+.guia-lista {
+  text-align: left;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.guia-lista li {
+  margin-bottom: 10px;
+  list-style: none;
 }
 
 /* FAQ */
 .faq button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: none;
   background: #ff8fab;
   color: white;
-  margin-top: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.faq p {
-  display: none;
-  padding: 10px;
-}
-
-/* MODAL */
-#modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 9998;
-}
-
-#modal img {
-  max-width: 90%;
-  max-height: 90%;
+  margin-top: 8px;
   border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
 }
+
+.faq p { display: none; padding: 15px; background: white; border-radius: 0 0 10px 10px; margin: 0; }
 
 /* WHATSAPP */
 .whatsapp {
@@ -198,78 +166,112 @@ header *, .box * {
   right: 20px;
   background: #25D366;
   color: white;
-  padding: 15px 20px;
+  padding: 15px 25px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   animation: pulse 2s infinite;
   z-index: 9999;
 }
 
 @keyframes pulse {
   0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+  50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
+
+/* MODAL */
+#modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+#modal img { max-width: 90%; max-height: 90%; border-radius: 10px; }
 </style>
 </head>
 
 <body>
 
 <header class="fade-in">
-  <h1>Artes Personalizadas 🎨</h1>
-  <p>Artes prontas para imprimir</p>
-  <p><strong>✔ Arquivo digital</strong></p>
-  <p><strong>⏳ Entrega em até 2 dias úteis</strong></p>
+  <img src="1000156293.png" alt="Bicho-Preguiça Designs" class="logo-site">
+  <h1>Bicho-Preguiça Designs</h1>
+  <p>Design inteligente para quem não quer perder tempo.</p>
+  <p><strong>✨ Kits Digitais Personalizados</strong></p>
+  <p><strong>⏳ Entrega em até 48h</strong></p>
 </header>
 
 <div class="box fade-in">
-  <h2>💰 Preços</h2>
-  <p>1 arte: R$15</p>
-  <p>3 artes: R$39</p>
-  <p>5 artes: R$59</p>
+  <h2>🚀 Escolha seu Pack</h2>
+  <p><strong>Individual:</strong> 1 arte exclusiva por <strong>R$ 20</strong></p>
+  <p><strong>Pack Standard:</strong> 5 artes (mesmo tema) por <strong>R$ 75</strong></p>
+  <p><strong>Pack Premium:</strong> Identidade completa (10 artes) por <strong>R$ 130</strong></p>
+  <small>*Valores para arquivos digitais de alta resolução.</small>
 </div>
 
 <div class="box fade-in">
-  <h2>📌 Como funciona</h2>
-  <p>1. Chama no WhatsApp</p>
-  <p>2. Envia nome + tema</p>
-  <p>3. Recebe a arte pronta</p>
+  <h2>🎨 Estilos de Design</h2>
+  <table class="estilos-table">
+    <thead>
+      <tr>
+        <th>Estilo</th>
+        <th>Ideal para...</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Minimalista</strong></td>
+        <td>Eventos elegantes e modernos.</td>
+      </tr>
+      <tr>
+        <td><strong>Aquarela</strong></td>
+        <td>Festas infantis e temas delicados.</td>
+      </tr>
+      <tr>
+        <td><strong>Vibrante</strong></td>
+        <td>Jogos, heróis e cores chamativas.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="box fade-in">
+  <h2>🖨️ Guia de Impressão</h2>
+  <ul class="guia-lista">
+    <li>📌 <strong>Papel:</strong> Use fotográfico 180g (brilho) ou Opaline (fosco).</li>
+    <li>📌 <strong>Qualidade:</strong> Marque sempre "Qualidade Alta" na impressora.</li>
+    <li>📌 <strong>Tamanho:</strong> Imprima em "Tamanho Real" para não cortar.</li>
+  </ul>
 </div>
 
 <section class="portfolio fade-in">
-  <img src="img/arte1.jpg" onclick="abrirModal(this.src)">
-  <img src="img/arte2.jpg" onclick="abrirModal(this.src)">
-  <img src="img/arte3.jpg" onclick="abrirModal(this.src)">
-  <img src="img/arte4.jpg" onclick="abrirModal(this.src)">
-  <img src="img/arte5.jpg" onclick="abrirModal(this.src)">
+  <img src="img/arte1.jpg" onclick="abrirModal(this.src)" alt="Exemplo 1">
+  <img src="img/arte2.jpg" onclick="abrirModal(this.src)" alt="Exemplo 2">
+  <img src="img/arte3.jpg" onclick="abrirModal(this.src)" alt="Exemplo 3">
+  <img src="img/arte4.jpg" onclick="abrirModal(this.src)" alt="Exemplo 4">
 </section>
 
 <div class="box faq fade-in">
-  <h2>❓ Perguntas Frequentes</h2>
+  <h2>❓ Dúvidas Comuns</h2>
+  <button onclick="toggle(this)">Como recebo minha arte?</button>
+  <p>Envio o arquivo em alta resolução direto no seu e-mail ou WhatsApp, prontinho para imprimir.</p>
 
-  <button onclick="toggle(this)">Como faço o pedido?</button>
-  <p>Você entra em contato pelo WhatsApp e envia as informações</p>
+  <button onclick="toggle(this)">Posso mudar o tema?</button>
+  <p>Com certeza! Criamos o design baseado no tema e nome que você escolher.</p>
 
-  <button onclick="toggle(this)">Posso pedir alterações?</button>
-  <p>Sim! Ajusto até você ficar satisfeito</p>
-
-  <button onclick="toggle(this)">Você faz impressão?</button>
-  <p>Sim, consulte valores</p>
-
-  <button onclick="toggle(this)">As artes são personalizadas?</button>
-  <p>Sim, feitas sob medida</p>
-
-  <button onclick="toggle(this)">Qual o prazo?</button>
-  <p>Até 2 dias úteis</p>
+  <button onclick="toggle(this)">Por que comprar a arte digital?</button>
+  <p>Você economiza no frete, imprime quantas vezes quiser e onde achar mais barato!</p>
 </div>
 
-<a class="whatsapp" 
-href="https://wa.me/5548988510691?text=Oi!%20Vim%20pelo%20site%20😊">
-  WhatsApp
+<a class="whatsapp" href="https://wa.me/5548988510691?text=Oi!%20Vi%20a%20Bicho-Preguiça%20Designs%20e%20quero%20um%20orçamento!">
+  Chamar no WhatsApp 🦥
 </a>
 
-<!-- MODAL -->
 <div id="modal" onclick="fecharModal()">
   <img id="imgGrande">
 </div>
